@@ -1,0 +1,19 @@
+{
+  "service": {
+    "Name": "hapi-fhir",
+    "Port": 8080,
+    "Tags": ["openlmis-service"],
+    "check": {
+      "interval": "10s",
+      "http": "http://HOST:PORT/health"
+    }
+  },
+  "path": [
+    "hapifhir",
+    "hapifhir/<all>",
+    "hapifhir/docs",
+    "hapifhir/docs/<all>",
+    "hapifhir/webjars",
+    "hapifhir/webjars/<all>"
+  ]
+}

@@ -1,0 +1,55 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'war'
+
+group = 'ca.uhn.hapi.fhir.example'
+version = '3.4.0'
+
+description = "HAPI FHIR FOR OPEN LMIS"
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+configurations.all {
+}
+
+repositories {
+        
+     maven { url "https://dl.bintray.com/dnault/maven" }
+     maven { url "https://jitpack.io" }
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+dependencies {
+    compile group: 'ca.uhn.hapi.fhir', name: 'hapi-fhir-base', version:'3.4.0'
+    compile group: 'ca.uhn.hapi.fhir', name: 'hapi-fhir-jpaserver-base', version:'3.4.0'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version:'1.2.3'
+    compile group: 'org.thymeleaf', name: 'thymeleaf', version:'3.0.9.RELEASE'
+    compile(group: 'org.ebaysf.web', name: 'cors-filter', version:'1.0.1') {
+exclude(module: 'servlet-api')
+    }
+    compile group: 'org.springframework', name: 'spring-web', version:'5.0.3.RELEASE'
+    compile group: 'org.apache.commons', name: 'commons-dbcp2', version:'2.1.1'
+    compile group: 'org.apache.derby', name: 'derby', version:'10.14.2.0'
+    compile group: 'org.apache.derby', name: 'derbynet', version:'10.14.2.0'
+    compile group: 'org.apache.derby', name: 'derbyclient', version:'10.14.2.0'
+    compile(group: 'com.helger', name: 'ph-schematron', version:'5.0.4') {
+        exclude(module: 'Saxon-HE')
+    }
+    compile group: 'org.postgresql', name: 'postgresql', version:'9.4.1210.jre7'
+    testCompile group: 'org.eclipse.jetty', name: 'jetty-servlets', version:'9.4.8.v20171121'
+    testCompile group: 'org.eclipse.jetty', name: 'jetty-servlet', version:'9.4.8.v20171121'
+    testCompile group: 'org.eclipse.jetty', name: 'jetty-server', version:'9.4.8.v20171121'
+    testCompile group: 'org.eclipse.jetty', name: 'jetty-util', version:'9.4.8.v20171121'
+    testCompile group: 'org.eclipse.jetty', name: 'jetty-webapp', version:'9.4.8.v20171121'
+    testCompile(group: 'junit', name: 'junit', version:'4.12') {
+exclude(module: 'hamcrest-core')
+    }
+    testCompile group: 'org.hamcrest', name: 'java-hamcrest', version:'2.0.0.0'
+    testCompile group: 'org.mockito', name: 'mockito-all', version:'1.10.19'
+    compile group: 'ca.uhn.hapi.fhir', name: 'hapi-fhir-testpage-overlay', version:'3.4.0'
+    compile group: 'ca.uhn.hapi.fhir', name: 'hapi-fhir-testpage-overlay', version:'3.4.0', classifier:'classes'
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version:'3.1.0'
+}
